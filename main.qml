@@ -10,6 +10,106 @@ ApplicationWindow {
     color: "#333"
 
     Item{
+        id: segmentedControl
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: parent.height / 12
+        visible: true
+
+        ExclusiveGroup { id: segmentedButtonGroup }
+        Button{
+            id: yearButton
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            width: parent.width / 4
+            checkable: true
+            text: "Year"
+
+            exclusiveGroup: segmentedButtonGroup
+            style: ButtonStyle {
+               background: Rectangle {
+                   color: "#888"
+                   smooth: true
+                   gradient: Gradient {
+                       GradientStop { position: 0.0; color: control.checked ? "#fff" : "#888" }
+                       GradientStop { position: 1.0; color: "#333" }
+                   }
+               }
+            }
+        }
+
+        Button{
+            id: monthButton
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: yearButton.right
+            width: parent.width / 4
+            checkable: true
+            text: "Month"
+
+            exclusiveGroup: segmentedButtonGroup
+            style: ButtonStyle {
+               background: Rectangle {
+                   color: "#888"
+                   smooth: true
+                   gradient: Gradient {
+                       GradientStop { position: 0.0; color: control.checked ? "#fff" : "#888" }
+                       GradientStop { position: 1.0; color: "#333" }
+                   }
+               }
+            }
+        }
+
+        Button{
+            id: weekButton
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: monthButton.right
+            width: parent.width / 4
+            checkable: true
+            text: "Week"
+
+            exclusiveGroup: segmentedButtonGroup
+            style: ButtonStyle {
+               background: Rectangle {
+                   color: "#888"
+                   smooth: true
+                   gradient: Gradient {
+                       GradientStop { position: 0.0; color: control.checked ? "#fff" : "#888" }
+                       GradientStop { position: 1.0; color: "#333" }
+                   }
+               }
+            }
+        }
+
+        Button{
+            id: dayButton
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: weekButton.right
+            width: parent.width / 4
+            checkable: true
+            checked: true
+            text: "Day"
+
+            exclusiveGroup: segmentedButtonGroup
+            style: ButtonStyle {
+               background: Rectangle {
+                   color: "#888"
+                   smooth: true
+                   gradient: Gradient {
+                       GradientStop { position: 0.0; color: control.checked ? "#fff" : "#888" }
+                       GradientStop { position: 1.0; color: "#333" }
+                   }
+               }
+            }
+        }
+
+    }
+
+    Item{
         id: calendarForm
         anchors.top: parent.top
         anchors.left: parent.left
@@ -80,13 +180,14 @@ ApplicationWindow {
             anchors.left: parent.left
             width: parent.width / 3
             checkable: true
-            text: "Calndar"
+            text: "Calendar"
 
             exclusiveGroup: panelButtonGroup
             style: ButtonStyle {
                background: Rectangle {
                    border.color: "#333"
                    color: "#888"
+                   smooth: true
                    radius: 4
                    gradient: Gradient {
                        GradientStop { position: 0.0; color: control.checked ? "#fff" : "#888" }
@@ -97,6 +198,7 @@ ApplicationWindow {
 
             onClicked: {
                 calendarForm.visible = true
+                segmentedControl.visible = false
             }
         }
 
@@ -115,6 +217,7 @@ ApplicationWindow {
                background: Rectangle {
                    border.color: "#333"
                    color: "#888"
+                   smooth: true
                    radius: 4
                    gradient: Gradient {
                        GradientStop { position: 0.0; color: control.checked ? "#fff" : "#888" }
@@ -125,6 +228,7 @@ ApplicationWindow {
 
             onClicked: {
                 calendarForm.visible = false
+                segmentedControl.visible = true
             }
         }
 
@@ -142,6 +246,7 @@ ApplicationWindow {
                background: Rectangle {
                    border.color: "#333"
                    color: "#888"
+                   smooth: true
                    radius: 4
                    gradient: Gradient {
                        GradientStop { position: 0.0; color: control.checked ? "#fff" : "#888" }
@@ -152,6 +257,7 @@ ApplicationWindow {
 
             onClicked: {
                 calendarForm.visible = false
+                segmentedControl.visible = false
             }
         }
 
